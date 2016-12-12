@@ -13,6 +13,11 @@ import java.sql.SQLException;
  * Created by Samat Khairutdinov on 09.10.2016 18:11.
  * celect
  */
+
+/**
+ * Да, использовать в мапперах DAO плохая мысль,
+ * но это прикольно. Сделано именно так только для скорости разработки.
+ */
 @Component
 public class CaseMapper implements RowMapper {
 
