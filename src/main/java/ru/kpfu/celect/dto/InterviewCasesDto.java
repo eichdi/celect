@@ -11,11 +11,11 @@ public class InterviewCasesDto {
 
     public InterviewCasesDto() {}
 
-    public InterviewCasesDto(List<CaseDto> recipientDtoList){
-        this.caseDtoList = recipientDtoList;
+    public InterviewCasesDto(List<CaseDto> caseDtoList){
+        this.caseDtoList = caseDtoList;
     }
 
-    public List<CaseDto> getRecipientDtoList() {
+    public List<CaseDto> getCaseDtoList() {
         return caseDtoList;
     }
 }
