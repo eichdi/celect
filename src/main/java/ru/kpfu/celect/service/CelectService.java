@@ -9,7 +9,7 @@ import ru.kpfu.celect.dto.InterviewsDto;
  * Created by Samat Khairutdinov on 12.12.16 19:11.
  * celect
  */
-public interface Service {
+public interface CelectService {
     AuthDto login(String phone);
     AuthDto registeration(String phone);
     InterviewsDto getInterviews();
