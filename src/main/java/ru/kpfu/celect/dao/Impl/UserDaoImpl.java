@@ -24,9 +24,9 @@ import java.util.Map;
 public class UserDaoImpl implements UserDao, InitializingBean {
 
     private static final String SELECT_ALL_SQL = "SELECT * FROM celect_user";
-    private static final String SELECT_BY_PHONE_SQL = "SELECT * FROM celect_user WHERE phone = :phone";
+    private static final String SELECT_BY_PHONE_SQL = "SELECT * FROM celect_user WHERE phone_number = :phone_number";
     private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM celect_user WHERE id = :userId";
-    private static final String INSERT_USER_SQL = "INSERT INTO celect_user (phone_number) values (:phone_number) RETURING *";
+    private static final String INSERT_USER_SQL = "INSERT INTO celect_user (phone_number) values (:phone_number) RETURNING *";
     private static final String UPDETE_USER_SQL = "UPDATE celect_user SET phone_number = :phone_number WHERE id = :userId";
     private static final String DELETE_USER_SQL = "DELETE FROM celect_user WHERE id = :userId";
 
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao, InitializingBean {
     @Override
     public User findByPhone(String phone) {
         Map<String, String> namedParam= new HashMap<>();
-        namedParam.put("phone", phone);
+        namedParam.put("phone_number", phone);
         try{
             return jdbcTemplate.query(SELECT_BY_PHONE_SQL, namedParam, new UserMapper()).get(0);}
         catch (EmptyResultDataAccessException e){

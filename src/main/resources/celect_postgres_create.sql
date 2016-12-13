@@ -1,5 +1,5 @@
 CREATE TABLE "celect_user" (
-	"id" integer NOT NULL UNIQUE,
+	"id" SERIAL NOT NULL UNIQUE,
 	"phone_number" varchar(11) NOT NULL UNIQUE,
 	CONSTRAINT celect_user_pk PRIMARY KEY ("id")
 ) WITH (
@@ -9,7 +9,7 @@ CREATE TABLE "celect_user" (
 
 
 CREATE TABLE "interview" (
-	"id" integer NOT NULL,
+	"id" SERIAL NOT NULL,
 	"info" TEXT UNIQUE,
 	CONSTRAINT interview_pk PRIMARY KEY ("id")
 ) WITH (
@@ -19,7 +19,7 @@ CREATE TABLE "interview" (
 
 
 CREATE TABLE "case" (
-	"id" integer NOT NULL,
+	"id" SERIAL NOT NULL,
 	"main_info" varchar(140) NOT NULL UNIQUE,
 	"full_info" TEXT,
 	"interview_id" integer NOT NULL,

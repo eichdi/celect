@@ -104,7 +104,7 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("interview_id", interviewId);
         try{
-            return jdbcTemplate.query(SELECT_BY_INTERVIEW_SQL, new HashMap(),caseMapper);
+            return jdbcTemplate.query(SELECT_BY_INTERVIEW_SQL, namedParam, caseMapper);
         }
         catch (EmptyResultDataAccessException e){
             return null;

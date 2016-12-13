@@ -7,15 +7,17 @@ import java.util.List;
  * celect
  */
 public class InterviewsDto {
-    List<InterviewDto> interviewDtoist;
+    List<InterviewDto> interviewDtoList;
 
     public InterviewsDto() {}
 
-    public InterviewsDto(List<InterviewDto> interviewDtos){
-        this.interviewDtoist = interviewDtos;
+    public InterviewsDto(List<InterviewDto> interviewDtoList){
+        this.interviewDtoList = interviewDtoList;
     }
 
-    public List<InterviewDto> interviewDtoist() {
-        return interviewDtoist;
+    public List<InterviewDto> getInterviewDtoList() {
+        return interviewDtoList;
     }
+
+
 }
