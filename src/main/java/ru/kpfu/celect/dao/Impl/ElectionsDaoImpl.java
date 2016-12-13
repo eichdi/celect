@@ -54,7 +54,7 @@ public class ElectionsDaoImpl implements ElectionsDao, InitializingBean {
         Map<String, Object> namedParam= new HashMap<>();
         namedParam.put("id", id);
         try {
-            return (Elections) jdbcTemplate.query(SELECT_BY_ID_ELECTIONS_SQL, namedParam, new ElectionsMapper()).get(0);
+            return jdbcTemplate.query(SELECT_BY_ID_ELECTIONS_SQL, namedParam, new ElectionsMapper()).get(0);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -100,6 +100,17 @@ public class ElectionsDaoImpl implements ElectionsDao, InitializingBean {
         namedParam.put("interview_id", elections.getInterview().getId());
         namedParam.put("case_id", elections.getaCase().getId());
         namedParam.put("user_id", elections.getUser().getId());
+
+        jdbcTemplate.update(INSERT_ELECTION_SQL, namedParam);
+    }
+
+    @Override
+    public void insert(int interviewId, int caseId, int userId) {
+        Map<String, Object> namedParam = new HashMap<>();
+
+        namedParam.put("interview_id", interviewId);
+        namedParam.put("case_id", caseId);
+        namedParam.put("user_id", userId);
 
         jdbcTemplate.update(INSERT_ELECTION_SQL, namedParam);
     }

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserDao {
     List<User> findAll();
-    List<User> findByPhone(String phone);
+    User findByPhone(String phone);
     User findeUserById(int id);
-    void insert(User user);
+    User insert(User user);
 }

@@ -15,4 +15,5 @@ public interface CaseDao {
     void insert(Case aCase);
     void update(Case user, int id);
     void delete(int id);
+    List<Case> findByInterview(int interviewId);
 }

@@ -19,13 +19,13 @@ import java.sql.SQLException;
  * но это прикольно. Сделано именно так только для скорости разработки.
  */
 @Component
-public class CaseMapper implements RowMapper {
+public class CaseMapper implements RowMapper<Case> {
 
     @Autowired
     private InterviewDao interviewDao;
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Case mapRow(ResultSet resultSet, int i) throws SQLException {
         return new Case(
                 resultSet.getInt("id"),
                 interviewDao.findById(resultSet.getInt("interview_id")),

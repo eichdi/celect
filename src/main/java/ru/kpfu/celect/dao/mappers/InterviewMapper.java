@@ -12,9 +12,9 @@ import java.sql.SQLException;
  * celect
  */
 @Component
-public class InterviewMapper implements RowMapper {
+public class InterviewMapper implements RowMapper <Interview> {
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Interview mapRow(ResultSet resultSet, int i) throws SQLException {
         return new Interview(
                 resultSet.getString("info"),
                 resultSet.getInt("id")

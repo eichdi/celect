@@ -15,4 +15,5 @@ public interface ElectionsDao {
     int countOfCase(int caseId);
     int countOfInterview(int interviewId);
     void insert(Elections elections);
+    void insert(int interviewId, int caseId, int userId);
 }

@@ -28,6 +28,7 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
     private static final String INSERT_CASE_SQL = "INSERT INTO \"case\" (main_info, full_info, interview_id) VALUES (:main_info, :full_info, :interview_id)";
     private static final String UPDATE_CASE_SQL = "UPDATE \"case\" SET main_info=:main_info, full_info = :full_info, interview_id = :interview_id WHERE id = :id";
     private static final String DELETE_CASE_SQL = "DELETE FROM \"case\" WHERE id = :id";
+    private static final String SELECT_BY_INTERVIEW_SQL = "SELECT * FROM \"case\" WHERE interview_id = :interview_id ";
 
 
     @Autowired
@@ -61,7 +62,7 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("id", id);
         try {
-            return (Case) jdbcTemplate.query(SELECT_CASE_BY_ID_SQL, namedParam, new CaseMapper()).get(0);
+            return jdbcTemplate.query(SELECT_CASE_BY_ID_SQL, namedParam, new CaseMapper()).get(0);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -94,6 +95,20 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
         Map<String, Object> namedParam= new HashMap<>();
         namedParam.put("id", id);
         jdbcTemplate.update(DELETE_CASE_SQL, namedParam);
+    }
+
+
+
+    @Override
+    public List<Case> findByInterview(int interviewId) {
+        Map<String, Object> namedParam = new HashMap<>();
+        namedParam.put("interview_id", interviewId);
+        try{
+            return jdbcTemplate.query(SELECT_BY_INTERVIEW_SQL, new HashMap(),caseMapper);
+        }
+        catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override

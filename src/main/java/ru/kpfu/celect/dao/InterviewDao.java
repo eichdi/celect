@@ -11,7 +11,7 @@ import java.util.List;
  * celect
  */
 public interface InterviewDao {
-    List<Elections> findAll();
+    List<Interview> findAll();
     Interview findById(int id);
     void insert(Interview interview);
     void update(Interview interview, int id);

@@ -46,7 +46,7 @@ public class InterviewDaoImpl implements InterviewDao, InitializingBean {
 
 
     @Override
-    public List findAll() {
+    public List<Interview> findAll() {
         try{
             return jdbcTemplate.query(SELECT_ALL_INTERVIEW_SQL, new HashMap(),new InterviewMapper());
         }
@@ -60,7 +60,7 @@ public class InterviewDaoImpl implements InterviewDao, InitializingBean {
         Map<String, Object> namedParam= new HashMap<>();
         namedParam.put("interviewId", id);
         try {
-            return (Interview) jdbcTemplate.query(SELECT_INTERVIEW_BY_ID_SQL, namedParam, interviewMapper).get(0);
+            return jdbcTemplate.query(SELECT_INTERVIEW_BY_ID_SQL, namedParam, interviewMapper).get(0);
         }catch (EmptyResultDataAccessException e){
             return null;
         }

@@ -12,9 +12,9 @@ import java.sql.SQLException;
  * celect
  */
 @Component
-public class UserMapper implements RowMapper {
+public class UserMapper implements RowMapper<User> {
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public User mapRow(ResultSet resultSet, int i) throws SQLException {
         return new User(
                 resultSet.getString("phone_number"),
                 resultSet.getInt("id")

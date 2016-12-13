@@ -19,7 +19,7 @@ import java.sql.SQLException;
  * celect
  */
 @Component
-public class ElectionsMapper implements RowMapper {
+public class ElectionsMapper implements RowMapper<Elections> {
 
     @Autowired
     CaseDao caseDao = new CaseDaoImpl();
@@ -29,7 +29,7 @@ public class ElectionsMapper implements RowMapper {
     UserDao userDao = new UserDaoImpl();
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Elections mapRow(ResultSet resultSet, int i) throws SQLException {
         return new Elections(
             interviewDao.findById(resultSet.getInt("interview_id")),
             caseDao.findById(resultSet.getInt("case_id")),

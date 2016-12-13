@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao, InitializingBean {
     private static final String SELECT_ALL_SQL = "SELECT * FROM celect_user";
     private static final String SELECT_BY_PHONE_SQL = "SELECT * FROM celect_user WHERE phone = :phone";
     private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM celect_user WHERE id = :userId";
-    private static final String INSERT_USER_SQL = "INSERT INTO celect_user (phone_number) values (:phone_number)";
+    private static final String INSERT_USER_SQL = "INSERT INTO celect_user (phone_number) values (:phone_number) RETURING *";
     private static final String UPDETE_USER_SQL = "UPDATE celect_user SET phone_number = :phone_number WHERE id = :userId";
     private static final String DELETE_USER_SQL = "DELETE FROM celect_user WHERE id = :userId";
 
@@ -53,11 +53,11 @@ public class UserDaoImpl implements UserDao, InitializingBean {
     }
 
     @Override
-    public List<User> findByPhone(String phone) {
+    public User findByPhone(String phone) {
         Map<String, String> namedParam= new HashMap<>();
         namedParam.put("phone", phone);
         try{
-            return jdbcTemplate.query(SELECT_BY_PHONE_SQL, namedParam, new UserMapper());}
+            return jdbcTemplate.query(SELECT_BY_PHONE_SQL, namedParam, new UserMapper()).get(0);}
         catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao, InitializingBean {
         Map<String, Object> namedParam= new HashMap<>();
         namedParam.put("userId", id);
         try {
-            return (User) jdbcTemplate.query(SELECT_USER_BY_ID_SQL, namedParam, new UserMapper()).get(0);
+            return jdbcTemplate.query(SELECT_USER_BY_ID_SQL, namedParam, new UserMapper()).get(0);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -78,12 +78,12 @@ public class UserDaoImpl implements UserDao, InitializingBean {
     }
 
     @Override
-    public void insert(User user) {
+    public User insert(User user) {
         Map<String, Object> namedParam = new HashMap<>();
 
         namedParam.put("phone_number", user.getPhone_number());
 
-        jdbcTemplate.update(INSERT_USER_SQL, namedParam);
+        return jdbcTemplate.queryForObject(INSERT_USER_SQL, namedParam, new UserMapper());
     }
 
     public void update(User user, int id) {
