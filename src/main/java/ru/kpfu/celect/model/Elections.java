@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Samat Khairutdinov on 07.10.2016 11:11.
  * celect
  */
-public class Elections implements Serializable {
+public class Elections implements Serializable, Model {
     Interview interview;
     Case aCase;
     User user;

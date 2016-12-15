@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Samat Khairutdinov on 07.10.2016 11:02.
  * celect
  */
-public class User implements Serializable {
+public class User implements Serializable, Model {
 
     private int id;
 

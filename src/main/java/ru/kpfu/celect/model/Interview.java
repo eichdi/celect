@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Samat Khairutdinov on 07.10.2016 11:07.
  * celect
  */
-public class Interview implements Serializable {
+public class Interview implements Serializable, Model {
     private int id;
     private String info;
 

@@ -4,7 +4,7 @@ package ru.kpfu.celect.dto;
  * Created by Samat Khairutdinov on 28.10.16 14:18.
  * celect
  */
-public class InterviewDto {
+public class InterviewDto implements Dto {
     private int id;
     private String info;
 

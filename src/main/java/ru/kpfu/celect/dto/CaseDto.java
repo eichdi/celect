@@ -4,7 +4,7 @@ package ru.kpfu.celect.dto;
  * Created by Samat Khairutdinov on 28.10.16 14:46.
  * celect
  */
-public class CaseDto {
+public class CaseDto implements Dto {
     private int id;
     private String main_info;
     private String full_info;

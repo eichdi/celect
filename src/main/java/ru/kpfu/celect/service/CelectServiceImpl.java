@@ -43,7 +43,8 @@ public class CelectServiceImpl implements CelectService {
     @Override
     public AuthDto login(String phone) {
         User user = userDao.findByPhone(phone);
-        return convert.convert(user);
+        AuthDto result = convert.convert(user);
+        return result;
     }
 
     @Override

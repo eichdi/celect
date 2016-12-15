@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Samat Khairutdinov on 07.10.2016 11:06.
  * celect
  */
-public class Case implements Serializable {
+public class Case implements Serializable, Model {
     private int id;
     private Interview interview;
     private String main_info;

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Samat Khairutdinov on 28.10.16 14:18.
  * celect
  */
-public class InterviewsDto {
+public class InterviewsDto implements Dto {
     List<InterviewDto> interviewDtoList;
 
     public InterviewsDto() {}
