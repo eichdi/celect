@@ -75,8 +75,8 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
     public void insert(Case aCase) {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("interview_id", aCase.getInterview().getId());
-        namedParam.put("full_info", aCase.getFull_info());
-        namedParam.put("main_info", aCase.getMain_info());
+        namedParam.put("full_info", aCase.getFullInfo());
+        namedParam.put("main_info", aCase.getMainInfo());
         jdbcTemplate.update(INSERT_CASE_SQL, namedParam);
     }
 
@@ -85,8 +85,8 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("id", id);
         namedParam.put("interview_id", aCase.getInterview().getId());
-        namedParam.put("full_info", aCase.getFull_info());
-        namedParam.put("main_info", aCase.getMain_info());
+        namedParam.put("full_info", aCase.getFullInfo());
+        namedParam.put("main_info", aCase.getMainInfo());
         jdbcTemplate.update(UPDATE_CASE_SQL, namedParam);
     }
 

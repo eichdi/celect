@@ -20,8 +20,8 @@ CREATE TABLE "interview" (
 
 CREATE TABLE "case" (
 	"id" SERIAL NOT NULL,
-	"main_info" varchar(140) NOT NULL UNIQUE,
-	"full_info" TEXT,
+	"mainInfo" varchar(140) NOT NULL UNIQUE,
+	"fullInfo" TEXT,
 	"interview_id" integer NOT NULL,
 	CONSTRAINT case_pk PRIMARY KEY ("id")
 ) WITH (

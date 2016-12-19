@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class Case implements Serializable, Model {
     private int id;
     private Interview interview;
-    private String main_info;
-    private String full_info;
+    private String mainInfo;
+    private String fullInfo;
 
-    public Case(Interview interview, String main_info, String full_info) {
+    public Case(Interview interview, String mainInfo, String fullInfo) {
         this.interview = interview;
-        this.main_info = main_info;
-        this.full_info = full_info;
+        this.mainInfo = mainInfo;
+        this.fullInfo = fullInfo;
     }
 
     public int getId() {
@@ -26,36 +26,36 @@ public class Case implements Serializable, Model {
         return interview;
     }
 
-    public String getMain_info() {
-        return main_info;
+    public String getMainInfo() {
+        return mainInfo;
     }
 
-    public String getFull_info() {
-        return full_info;
+    public String getFullInfo() {
+        return fullInfo;
     }
 
     public Case() {
     }
 
-    public Case(int id, Interview interview, String main_info, String full_info) {
+    public Case(int id, Interview interview, String mainInfo, String fullInfo) {
         this.id = id;
         this.interview = interview;
-        this.main_info = main_info;
-        this.full_info = full_info;
+        this.mainInfo = mainInfo;
+        this.fullInfo = fullInfo;
     }
 
     public Case(Builder builder){
         this.id = builder.id;
         this.interview = builder.interview;
-        this.main_info = builder.main_info;
-        this.full_info = builder.full_info;
+        this.mainInfo = builder.mainInfo;
+        this.fullInfo = builder.fullInfo;
     }
 
     public static class Builder {
         private int id;
         private Interview interview;
-        private String main_info;
-        private String full_info;
+        private String mainInfo;
+        private String fullInfo;
 
         public Builder id(int arg){
             this.id = arg;
@@ -65,12 +65,12 @@ public class Case implements Serializable, Model {
             this.interview = arg;
             return this;
         }
-        public Builder main_info(String arg){
-            this.main_info = arg;
+        public Builder mainInfo(String arg){
+            this.mainInfo = arg;
             return this;
         }
-        public Builder full_info(String arg){
-            this.full_info = arg;
+        public Builder fullInfo(String arg){
+            this.fullInfo = arg;
             return this;
         }
         public Case build(){

@@ -13,10 +13,16 @@ import ru.kpfu.celect.dao.CaseDao;
 import ru.kpfu.celect.dao.ElectionsDao;
 import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
+import ru.kpfu.celect.data.CelectServiceTestData;
+import ru.kpfu.celect.dto.CaseDto;
+import ru.kpfu.celect.dto.InterviewCasesDto;
+import ru.kpfu.celect.dto.InterviewsDto;
 import ru.kpfu.celect.model.Case;
 import ru.kpfu.celect.model.Interview;
 import ru.kpfu.celect.model.Model;
 import ru.kpfu.celect.model.User;
+
+import java.util.List;
 
 import static ru.kpfu.celect.data.CelectServiceTestData.*;
 import static org.junit.Assert.assertEquals;
@@ -48,18 +54,26 @@ public class CelectServiceTest {
     @Mock
     ConversionResultFactory convert;
 
-    User user = getUser();
+    public static final int INTERVIEW_ID = 1;
+    public static final int CASE_ID = 1;
 
+    User user = getUser();
+    Case aCase = CelectServiceTestData.getCase();
+    List<Interview> interviewList = getListInterview();
+    List<Case> caseList = getListCase();
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
 
-        //Мокирование userDao
-        when(userDao.findByPhone(   PHONE_NUMBER))                  .thenReturn(user);
-        when(userDao.findeUserById( user.getId()))             .thenReturn(user);
-        when(userDao.insert(        user))                     .thenReturn(user);
+        //Мокирование Dao
+        when(userDao.findByPhone(   PHONE_NUMBER))  .thenReturn(user);
+        when(userDao.findeUserById( user.getId()))  .thenReturn(user);
+        when(userDao.insert(        user))          .thenReturn(user);
+        when(interviewDao.findAll())                .thenReturn(interviewList);
+        when(caseDao.findByInterview(INTERVIEW_ID)) .thenReturn(caseList);
+        when(caseDao.findById(CASE_ID))             .thenReturn(aCase);
 
         //Устновка вызова реальных методов в конвертере
         doCallRealMethod().when(convert).convert((User)         anyObject());
@@ -80,6 +94,21 @@ public class CelectServiceTest {
     public void registration(){
         doReturn(user).when(convert).convert(PHONE_NUMBER);
         assertEquals(celectService.registeration(PHONE_NUMBER), getAuthDto());
+    }
+
+    @Test
+    public void getInterviews(){
+        assertEquals(celectService.getInterviews(), convert.interviewListToInterviewsDto(interviewList));
+    }
+
+    @Test
+    public void getCase(){
+        assertEquals(celectService.getCase(INTERVIEW_ID), convert.caseListToInterviewCasesDto(caseList));
+    }
+
+    @Test
+    public void election(){
+        assertEquals(celectService.election(INTERVIEW_ID, CASE_ID, PHONE_NUMBER), convert.convert(aCase));
     }
 
 }

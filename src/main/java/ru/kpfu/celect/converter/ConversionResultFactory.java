@@ -53,8 +53,8 @@ public class ConversionResultFactory {
     public CaseDto convert(Case aCase) {
         return new CaseDto.Builder()
                 .id(aCase.getId())
-                .full_info(aCase.getFull_info())
-                .main_info(aCase.getMain_info())
+                .full_info(aCase.getFullInfo())
+                .main_info(aCase.getMainInfo())
                 .build();
     }
 }

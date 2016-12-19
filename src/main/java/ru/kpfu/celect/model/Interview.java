@@ -29,4 +29,26 @@ public class Interview implements Serializable, Model {
         this.info = info;
         this.id = id;
     }
+
+    public Interview(Builder builder){
+        this.id = builder.id;
+        this.info = builder.info;
+    }
+
+    public static class Builder {
+        private int id;
+        private String info;
+
+        public Builder id(int arg){
+            this.id = arg;
+            return this;
+        }
+        public Builder info(String arg){
+            this.info = arg;
+            return this;
+        }
+        public Interview build(){
+            return new Interview(this);
+        }
+    }
 }

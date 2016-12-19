@@ -1,5 +1,7 @@
 package ru.kpfu.celect.dto;
 
+import java.util.Objects;
+
 /**
  * Created by Samat Khairutdinov on 28.10.16 14:18.
  * celect
@@ -49,5 +51,13 @@ public class InterviewDto implements Dto {
         public InterviewDto build(){
             return new InterviewDto(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InterviewDto that = (InterviewDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(info, that.info);
     }
 }

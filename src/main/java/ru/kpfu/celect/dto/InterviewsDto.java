@@ -1,6 +1,7 @@
 package ru.kpfu.celect.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Samat Khairutdinov on 28.10.16 14:18.
@@ -20,4 +21,10 @@ public class InterviewsDto implements Dto {
     }
 
 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InterviewsDto that = (InterviewsDto) o;
+        return Objects.equals(interviewDtoList, that.interviewDtoList);
+    }
 }
