@@ -62,11 +62,9 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("id", id);
         try {
-            return jdbcTemplate.query(SELECT_CASE_BY_ID_SQL, namedParam, new CaseMapper()).get(0);
-        }catch (EmptyResultDataAccessException e){
-            return null;
-        }
-        catch(IndexOutOfBoundsException e){
+            return jdbcTemplate.queryForObject(SELECT_CASE_BY_ID_SQL, namedParam, caseMapper);
+            //return jdbcTemplate.query(SELECT_CASE_BY_ID_SQL, namedParam, new CaseMapper()).get(0);
+        }catch (Exception e){
             return null;
         }
     }

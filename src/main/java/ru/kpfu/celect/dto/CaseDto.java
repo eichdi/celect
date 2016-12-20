@@ -47,11 +47,11 @@ public class CaseDto implements Dto {
             this.id = arg;
             return this;
         }
-        public Builder main_info(String arg){
+        public Builder mainInfo(String arg){
             this.mainInfo = arg;
             return this;
         }
-        public Builder full_info(String arg){
+        public Builder fullInfo(String arg){
             this.fullInfo = arg;
             return this;
         }

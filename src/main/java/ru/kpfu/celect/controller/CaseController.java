@@ -22,7 +22,7 @@ public class CaseController {
         return new ResponseEntity<>(celectService.getCase(interviewId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/interview/{interview-id}/case/{case-id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/interview/{interview-id}/case/{case-id}", method = RequestMethod.POST)
     public ResponseEntity<CaseDto> election(@PathVariable("interview-id") int interviewId,
                                             @PathVariable("case-id") int caseId,
                                             @RequestHeader("phone") String phone){

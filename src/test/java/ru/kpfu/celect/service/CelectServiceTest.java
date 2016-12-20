@@ -2,31 +2,23 @@ package ru.kpfu.celect.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 import ru.kpfu.celect.converter.ConversionResultFactory;
 import ru.kpfu.celect.dao.CaseDao;
 import ru.kpfu.celect.dao.ElectionsDao;
 import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
-import ru.kpfu.celect.data.CelectServiceTestData;
-import ru.kpfu.celect.dto.CaseDto;
-import ru.kpfu.celect.dto.InterviewCasesDto;
-import ru.kpfu.celect.dto.InterviewsDto;
+import ru.kpfu.celect.data.TestData;
 import ru.kpfu.celect.model.Case;
 import ru.kpfu.celect.model.Interview;
-import ru.kpfu.celect.model.Model;
 import ru.kpfu.celect.model.User;
 
 import java.util.List;
 
-import static ru.kpfu.celect.data.CelectServiceTestData.*;
+import static ru.kpfu.celect.data.TestData.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.*;
 
 
@@ -58,7 +50,7 @@ public class CelectServiceTest {
     public static final int CASE_ID = 1;
 
     User user = getUser();
-    Case aCase = CelectServiceTestData.getCase();
+    Case aCase = TestData.getCase();
     List<Interview> interviewList = getListInterview();
     List<Case> caseList = getListCase();
 

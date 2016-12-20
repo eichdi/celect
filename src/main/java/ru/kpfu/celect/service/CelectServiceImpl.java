@@ -69,8 +69,12 @@ public class CelectServiceImpl implements CelectService {
     @Override
     public CaseDto election(int interviewId, int caseId, String phone) {
         User user = userDao.findByPhone(phone);
-        electionsDao.insert(interviewId, caseId, user.getId());
-        Case aCase = caseDao.findById(caseId);
-        return convert.convert(aCase);
+        try{
+            electionsDao.insert(interviewId, caseId, user.getId());
+        }
+        finally {
+            Case aCase = caseDao.findById(caseId);
+            return convert.convert(aCase);
+        }
     }
 }
