@@ -20,7 +20,7 @@ public class Application extends SpringApplication{
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        System.out.print("HELOLO");
+        //System.out.print("HELOLO");
     }
 
 }

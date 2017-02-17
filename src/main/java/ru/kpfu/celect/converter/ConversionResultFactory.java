@@ -13,6 +13,7 @@ import java.util.List;
  * Created by Samat Khairutdinov on 28.10.16 14:22.
  * celect
  */
+// TODO: 17.02.17 Refactor me!
 @Component
 public class ConversionResultFactory {
     public AuthDto convert(User user) {

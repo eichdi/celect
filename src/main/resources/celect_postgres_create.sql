@@ -1,3 +1,6 @@
+--TODO: Дополнить поля в таблице для возможности интеграции с другими системами
+-- Warning: this application use JDBC.
+-- If you create database where you have cycle table key, mapper will not work!
 CREATE TABLE "celect_user" (
 	"id" SERIAL NOT NULL UNIQUE,
 	"phone_number" varchar(11) NOT NULL UNIQUE,

@@ -15,6 +15,8 @@ import java.util.Properties;
  * Created by Samat Khairutdinov on 06.10.2016 17:57.
  * celect
  */
+
+// TODO: 17.02.17 Добавить  Security 
 @Configuration
 public class AppContext {
 

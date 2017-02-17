@@ -14,16 +14,22 @@ import ru.kpfu.celect.service.CelectService;
  * Created by Samat Khairutdinov on 12.12.16 18:50.
  * celect
  */
+
+
 @RestController
 public class UserController {
     @Autowired
     CelectService celectService;
 
+    //TODO: Добавить воможность для регистрации сервиса позволяющий сделать возможность добавления голоса за того или иного пользователя
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ResponseEntity<AuthDto> login(@RequestHeader String phone){
         return new ResponseEntity<>(celectService.login(phone), HttpStatus.OK);
     }
 
+    // TODO: 17.02.17 Добавить возжность голосовать каждому пользователю отдельно
+
+    //TODO: Добавить метод для добавления пользователя
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ResponseEntity<AuthDto> registration(@RequestHeader String phone){
         return new ResponseEntity<>(celectService.registeration(phone), HttpStatus.OK);

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Samat Khairutdinov on 06.10.2016 19:47.
  * celect
  */
+// TODO: 17.02.17 Вырезать 
 @RestController
 public class HelloController {
 

@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 public class User implements Serializable, Model {
 
+    //TODO: Дополнить поля в таблице для возможности интеграции с другими системами
+
     private int id;
 
     private String phone_number;
