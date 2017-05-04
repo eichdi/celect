@@ -1,7 +1,7 @@
 package ru.kpfu.celect.data;
 
 import ru.kpfu.celect.dto.*;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 import ru.kpfu.celect.model.Interview;
 import ru.kpfu.celect.model.User;
 
@@ -73,16 +73,16 @@ public class TestData {
                 .build();
     }
 
-    public static Case getCase(){
-        return new Case.Builder()
+    public static CelectCase getCase(){
+        return new CelectCase.Builder()
                 .fullInfo("full_info")
                 .id(CASE_ID)
                 .mainInfo("main_info")
                 .interview(getInterview())
                 .build();
     }
-    public static Case getCase2(){
-        return new Case.Builder()
+    public static CelectCase getCase2(){
+        return new CelectCase.Builder()
                 .fullInfo("full_info")
                 .id(CASE_ID+1)
                 .mainInfo("main_info")
@@ -90,8 +90,8 @@ public class TestData {
                 .build();
     }
 
-    public static List<Case> getListCase(){
-        List<Case> result =  new ArrayList<Case>();
+    public static List<CelectCase> getListCase(){
+        List<CelectCase> result =  new ArrayList<CelectCase>();
         result.add(getCase());
         result.add(getCase2());
         return result;

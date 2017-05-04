@@ -1,18 +1,30 @@
 package ru.kpfu.celect.model;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:06.
  * celect
  */
-public class Case implements Serializable, Model {
+@Entity
+@Table(name = "case")
+public class CelectCase implements Serializable, Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @JoinColumn(name = "interview_id")
     private Interview interview;
+
+    @Column(name = "main_info")
     private String mainInfo;
+
+    @Column(name = "main_full")
     private String fullInfo;
 
-    public Case(Interview interview, String mainInfo, String fullInfo) {
+    public CelectCase(Interview interview, String mainInfo, String fullInfo) {
         this.interview = interview;
         this.mainInfo = mainInfo;
         this.fullInfo = fullInfo;
@@ -34,17 +46,17 @@ public class Case implements Serializable, Model {
         return fullInfo;
     }
 
-    public Case() {
+    public CelectCase() {
     }
 
-    public Case(int id, Interview interview, String mainInfo, String fullInfo) {
+    public CelectCase(int id, Interview interview, String mainInfo, String fullInfo) {
         this.id = id;
         this.interview = interview;
         this.mainInfo = mainInfo;
         this.fullInfo = fullInfo;
     }
 
-    public Case(Builder builder){
+    public CelectCase(Builder builder){
         this.id = builder.id;
         this.interview = builder.interview;
         this.mainInfo = builder.mainInfo;
@@ -73,8 +85,8 @@ public class Case implements Serializable, Model {
             this.fullInfo = arg;
             return this;
         }
-        public Case build(){
-            return new Case(this);
+        public CelectCase build(){
+            return new CelectCase(this);
         }
     }
 }

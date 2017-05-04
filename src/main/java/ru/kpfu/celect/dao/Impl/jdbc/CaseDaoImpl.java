@@ -1,4 +1,4 @@
-package ru.kpfu.celect.dao.Impl;
+package ru.kpfu.celect.dao.Impl.jdbc;
 
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.kpfu.celect.dao.CaseDao;
 import ru.kpfu.celect.dao.mappers.CaseMapper;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -58,7 +58,7 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
     }
 
     @Override
-    public Case findById(int id) {
+    public CelectCase findById(int id) {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("id", id);
         try {
@@ -70,21 +70,21 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
     }
 
     @Override
-    public void insert(Case aCase) {
+    public void insert(CelectCase aCelectCase) {
         Map<String, Object> namedParam = new HashMap<>();
-        namedParam.put("interview_id", aCase.getInterview().getId());
-        namedParam.put("full_info", aCase.getFullInfo());
-        namedParam.put("main_info", aCase.getMainInfo());
+        namedParam.put("interview_id", aCelectCase.getInterview().getId());
+        namedParam.put("full_info", aCelectCase.getFullInfo());
+        namedParam.put("main_info", aCelectCase.getMainInfo());
         jdbcTemplate.update(INSERT_CASE_SQL, namedParam);
     }
 
     @Override
-    public void update(Case aCase, int id) {
+    public void update(CelectCase aCelectCase) {
         Map<String, Object> namedParam = new HashMap<>();
-        namedParam.put("id", id);
-        namedParam.put("interview_id", aCase.getInterview().getId());
-        namedParam.put("full_info", aCase.getFullInfo());
-        namedParam.put("main_info", aCase.getMainInfo());
+        namedParam.put("id", aCelectCase.getId());
+        namedParam.put("interview_id", aCelectCase.getInterview().getId());
+        namedParam.put("full_info", aCelectCase.getFullInfo());
+        namedParam.put("main_info", aCelectCase.getMainInfo());
         jdbcTemplate.update(UPDATE_CASE_SQL, namedParam);
     }
 
@@ -98,7 +98,7 @@ public class CaseDaoImpl implements CaseDao, InitializingBean {
 
 
     @Override
-    public List<Case> findByInterview(int interviewId) {
+    public List<CelectCase> findByInterview(int interviewId) {
         Map<String, Object> namedParam = new HashMap<>();
         namedParam.put("interview_id", interviewId);
         try{

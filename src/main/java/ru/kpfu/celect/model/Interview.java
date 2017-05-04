@@ -1,14 +1,25 @@
 package ru.kpfu.celect.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:07.
  * celect
  */
+@Entity
+@Table(name = "interview")
 public class Interview implements Serializable, Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "info")
     private String info;
+
+    @OneToMany(mappedBy = "interview")
+    private List<CelectCase> celectCase;
 
     public String getInfo() {
         return info;
@@ -17,6 +28,10 @@ public class Interview implements Serializable, Model {
     public int getId() {
         return id;
     }
+
+//    public CelectCase getCelectCase() {
+//        return celectCase;
+//    }
 
     public Interview() {
     }

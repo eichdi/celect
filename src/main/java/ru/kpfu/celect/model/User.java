@@ -1,28 +1,32 @@
 package ru.kpfu.celect.model;
 
-import ru.kpfu.celect.dto.AuthDto;
-
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:02.
  * celect
  */
+
+@Entity
+@Table(name = "celect_user")
 public class User implements Serializable, Model {
 
     //TODO: Дополнить поля в таблице для возможности интеграции с другими системами
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String phone_number;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public User(Builder builder) {
         this.id = builder.id;
-        this.phone_number = builder.phone;
+        this.phoneNumber = builder.phone;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public int getId() {
@@ -33,12 +37,12 @@ public class User implements Serializable, Model {
 
     }
 
-    public User(String phone_number) {
-        this.phone_number = phone_number;
+    public User(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public User(String phone_number, int id) {
-        this.phone_number = phone_number;
+    public User(String phoneNumber, int id) {
+        this.phoneNumber = phoneNumber;
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package ru.kpfu.celect.dao.Impl;
+package ru.kpfu.celect.dao.Impl.jdbc;
 
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
@@ -81,14 +81,14 @@ public class UserDaoImpl implements UserDao, InitializingBean {
     public User insert(User user) {
         Map<String, Object> namedParam = new HashMap<>();
 
-        namedParam.put("phone_number", user.getPhone_number());
+        namedParam.put("phone_number", user.getPhoneNumber());
 
         return jdbcTemplate.queryForObject(INSERT_USER_SQL, namedParam, new UserMapper());
     }
 
     public void update(User user, int id) {
         Map<String, Object> namedParam = new HashMap<>();
-        namedParam.put("phone_number", user.getPhone_number());
+        namedParam.put("phone_number", user.getPhoneNumber());
         namedParam.put("userId", id);
 
         jdbcTemplate.update(UPDETE_USER_SQL, namedParam);

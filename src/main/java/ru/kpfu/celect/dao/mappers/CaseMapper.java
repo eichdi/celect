@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import ru.kpfu.celect.dao.InterviewDao;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,14 +19,14 @@ import java.sql.SQLException;
  * но это прикольно. Сделано именно так только для скорости разработки.
  */
 @Component
-public class CaseMapper implements RowMapper<Case> {
+public class CaseMapper implements RowMapper<CelectCase> {
 
     @Autowired
     private InterviewDao interviewDao;
 
     @Override
-    public Case mapRow(ResultSet resultSet, int i) throws SQLException {
-        return new Case(
+    public CelectCase mapRow(ResultSet resultSet, int i) throws SQLException {
+        return new CelectCase(
                 resultSet.getInt("id"),
                 interviewDao.findById(resultSet.getInt("interview_id")),
                 resultSet.getString("main_info"),

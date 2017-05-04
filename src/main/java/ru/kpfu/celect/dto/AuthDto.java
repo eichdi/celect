@@ -1,9 +1,5 @@
 package ru.kpfu.celect.dto;
 
-import ru.kpfu.celect.model.Case;
-import ru.kpfu.celect.model.User;
-
-import javax.jws.soap.SOAPBinding;
 import java.util.Objects;
 
 /**

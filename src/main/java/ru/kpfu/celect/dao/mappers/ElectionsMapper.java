@@ -1,14 +1,15 @@
 package ru.kpfu.celect.dao.mappers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import ru.kpfu.celect.dao.CaseDao;
 import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
-import ru.kpfu.celect.dao.Impl.CaseDaoImpl;
-import ru.kpfu.celect.dao.Impl.InterviewDaoImpl;
-import ru.kpfu.celect.dao.Impl.UserDaoImpl;
+import ru.kpfu.celect.dao.Impl.jdbc.CaseDaoImpl;
+import ru.kpfu.celect.dao.Impl.jdbc.InterviewDaoImpl;
+import ru.kpfu.celect.dao.Impl.jdbc.UserDaoImpl;
 import ru.kpfu.celect.model.Elections;
 
 import java.sql.ResultSet;
@@ -21,10 +22,14 @@ import java.sql.SQLException;
 @Component
 public class ElectionsMapper implements RowMapper<Elections> {
 
+    @Qualifier(value = "caseDaoImpl")
     @Autowired
     CaseDao caseDao = new CaseDaoImpl();
+
     @Autowired
     InterviewDao interviewDao = new InterviewDaoImpl();
+
+    @Qualifier(value = "userDaoImpl")
     @Autowired
     UserDao userDao = new UserDaoImpl();
 

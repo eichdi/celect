@@ -18,15 +18,8 @@ import java.util.Properties;
 
 // TODO: 17.02.17 Добавить  Security 
 @Configuration
+@ComponentScan("ru.kpfu")
 public class AppContext {
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-            dataSource.setDriverClassName("org.postgresql.Driver");
-            dataSource.setUrl("jdbc:postgresql://localhost:5432/celect");
-            dataSource.setUsername("postgres");
-            dataSource.setPassword("postgres");
-        return dataSource;
-    }
+
 }

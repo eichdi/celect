@@ -1,4 +1,4 @@
-package ru.kpfu.celect.dao.Impl;
+package ru.kpfu.celect.dao.Impl.jdbc;
 
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;

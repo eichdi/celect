@@ -2,7 +2,7 @@ package ru.kpfu.celect.converter;
 
 import org.springframework.stereotype.Component;
 import ru.kpfu.celect.dto.*;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 import ru.kpfu.celect.model.Interview;
 import ru.kpfu.celect.model.User;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class ConversionResultFactory {
     public AuthDto convert(User user) {
         return new AuthDto.Builder()
-                .phone(user.getPhone_number())
+                .phone(user.getPhoneNumber())
                 .build();
     }
 
@@ -43,19 +43,19 @@ public class ConversionResultFactory {
                 .build();
     }
 
-    public InterviewCasesDto caseListToInterviewCasesDto(List<Case> cases) {
+    public InterviewCasesDto caseListToInterviewCasesDto(List<CelectCase> cases) {
         List<CaseDto> caseDtos = new ArrayList<>();
-        for (Case aCase: cases) {
-            caseDtos.add(convert(aCase));
+        for (CelectCase aCelectCase : cases) {
+            caseDtos.add(convert(aCelectCase));
         }
         return new InterviewCasesDto(caseDtos);
     }
 
-    public CaseDto convert(Case aCase) {
+    public CaseDto convert(CelectCase aCelectCase) {
         return new CaseDto.Builder()
-                .id(aCase.getId())
-                .fullInfo(aCase.getFullInfo())
-                .mainInfo(aCase.getMainInfo())
+                .id(aCelectCase.getId())
+                .fullInfo(aCelectCase.getFullInfo())
+                .mainInfo(aCelectCase.getMainInfo())
                 .build();
     }
 }

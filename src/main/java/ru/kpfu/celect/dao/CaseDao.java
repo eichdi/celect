@@ -1,7 +1,6 @@
 package ru.kpfu.celect.dao;
 
-import ru.kpfu.celect.model.Case;
-import ru.kpfu.celect.model.User;
+import ru.kpfu.celect.model.CelectCase;
 
 import java.util.List;
 
@@ -10,10 +9,10 @@ import java.util.List;
  * celect
  */
 public interface CaseDao {
-    List<Case> findAll();
-    Case findById(int id);
-    void insert(Case aCase);
-    void update(Case user, int id);
+    List<CelectCase> findAll();
+    CelectCase findById(int id);
+    void insert(CelectCase aCelectCase);
+    void update(CelectCase aCelectCase);
     void delete(int id);
-    List<Case> findByInterview(int interviewId);
+    List<CelectCase> findByInterview(int interviewId);
 }

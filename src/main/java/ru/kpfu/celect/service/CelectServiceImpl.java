@@ -1,6 +1,7 @@
 package ru.kpfu.celect.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.kpfu.celect.converter.ConversionResultFactory;
 import ru.kpfu.celect.dao.CaseDao;
@@ -11,7 +12,7 @@ import ru.kpfu.celect.dto.AuthDto;
 import ru.kpfu.celect.dto.CaseDto;
 import ru.kpfu.celect.dto.InterviewCasesDto;
 import ru.kpfu.celect.dto.InterviewsDto;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 import ru.kpfu.celect.model.Interview;
 import ru.kpfu.celect.model.User;
 
@@ -23,6 +24,8 @@ import java.util.List;
  */
 @Service
 public class CelectServiceImpl implements CelectService {
+
+    @Qualifier(value = "caseDaoJpaImpl")
     @Autowired
     CaseDao caseDao;
 
@@ -32,6 +35,7 @@ public class CelectServiceImpl implements CelectService {
     @Autowired
     InterviewDao interviewDao;
 
+    @Qualifier(value = "userDaoJpaImpl")
     @Autowired
     UserDao userDao;
 
@@ -62,7 +66,7 @@ public class CelectServiceImpl implements CelectService {
 
     @Override
     public InterviewCasesDto getCase(int interviewId) {
-        List<Case> cases = caseDao.findByInterview(interviewId);
+        List<CelectCase> cases = caseDao.findByInterview(interviewId);
         return convert.caseListToInterviewCasesDto(cases);
     }
 
@@ -73,8 +77,8 @@ public class CelectServiceImpl implements CelectService {
             electionsDao.insert(interviewId, caseId, user.getId());
         }
         finally {
-            Case aCase = caseDao.findById(caseId);
-            return convert.convert(aCase);
+            CelectCase aCelectCase = caseDao.findById(caseId);
+            return convert.convert(aCelectCase);
         }
     }
 }

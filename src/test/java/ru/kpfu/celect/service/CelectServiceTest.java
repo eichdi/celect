@@ -11,7 +11,7 @@ import ru.kpfu.celect.dao.ElectionsDao;
 import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
 import ru.kpfu.celect.data.TestData;
-import ru.kpfu.celect.model.Case;
+import ru.kpfu.celect.model.CelectCase;
 import ru.kpfu.celect.model.Interview;
 import ru.kpfu.celect.model.User;
 
@@ -50,9 +50,9 @@ public class CelectServiceTest {
     public static final int CASE_ID = 1;
 
     User user = getUser();
-    Case aCase = TestData.getCase();
+    CelectCase aCelectCase = TestData.getCase();
     List<Interview> interviewList = getListInterview();
-    List<Case> caseList = getListCase();
+    List<CelectCase> caseList = getListCase();
 
     @Before
     public void setUp() throws Exception {
@@ -65,21 +65,21 @@ public class CelectServiceTest {
         when(userDao.insert(        user))          .thenReturn(user);
         when(interviewDao.findAll())                .thenReturn(interviewList);
         when(caseDao.findByInterview(INTERVIEW_ID)) .thenReturn(caseList);
-        when(caseDao.findById(CASE_ID))             .thenReturn(aCase);
+        when(caseDao.findById(CASE_ID))             .thenReturn(aCelectCase);
 
         //Устновка вызова реальных методов в конвертере
         doCallRealMethod().when(convert).convert((User)         anyObject());
-        doCallRealMethod().when(convert).convert((Case)         anyObject());
+        doCallRealMethod().when(convert).convert((CelectCase)         anyObject());
         doCallRealMethod().when(convert).convert((Interview)    anyObject());
         doCallRealMethod().when(convert).convert(               anyString());
-        doCallRealMethod().when(convert).caseListToInterviewCasesDto(anyListOf(Case.class));
+        doCallRealMethod().when(convert).caseListToInterviewCasesDto(anyListOf(CelectCase.class));
         doCallRealMethod().when(convert).interviewListToInterviewsDto(anyListOf(Interview.class));
 
     }
 
     @Test
     public void login(){
-        assertEquals(celectService.login(getUser().getPhone_number()), getAuthDto());
+        assertEquals(celectService.login(getUser().getPhoneNumber()), getAuthDto());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class CelectServiceTest {
 
     @Test
     public void election(){
-        assertEquals(celectService.election(INTERVIEW_ID, CASE_ID, PHONE_NUMBER), convert.convert(aCase));
+        assertEquals(celectService.election(INTERVIEW_ID, CASE_ID, PHONE_NUMBER), convert.convert(aCelectCase));
     }
 
 }

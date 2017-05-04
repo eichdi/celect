@@ -3,7 +3,7 @@
 -- If you create database where you have cycle table key, mapper will not work!
 CREATE TABLE "celect_user" (
 	"id" SERIAL NOT NULL UNIQUE,
-	"phone_number" varchar(11) NOT NULL UNIQUE,
+	"phoneNumber" varchar(11) NOT NULL UNIQUE,
 	CONSTRAINT celect_user_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

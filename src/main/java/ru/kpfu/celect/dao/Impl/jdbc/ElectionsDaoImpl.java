@@ -1,4 +1,4 @@
-package ru.kpfu.celect.dao.Impl;
+package ru.kpfu.celect.dao.Impl.jdbc;
 
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
@@ -98,7 +98,7 @@ public class ElectionsDaoImpl implements ElectionsDao, InitializingBean {
         Map<String, Object> namedParam = new HashMap<>();
 
         namedParam.put("interview_id", elections.getInterview().getId());
-        namedParam.put("case_id", elections.getaCase().getId());
+        namedParam.put("case_id", elections.getaCelectCase().getId());
         namedParam.put("user_id", elections.getUser().getId());
 
         jdbcTemplate.update(INSERT_ELECTION_SQL, namedParam);
