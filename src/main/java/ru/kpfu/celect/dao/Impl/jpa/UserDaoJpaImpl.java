@@ -29,8 +29,8 @@ public class UserDaoJpaImpl implements UserDao{
 
     @Override
     public User findByPhone(String phone) {
-        return userRepository.findByPhoneNumber(phone);
-//        return null;
+//        return userRepository.findByPhoneNumber(phone);
+        return null;
     }
 
     @Override
