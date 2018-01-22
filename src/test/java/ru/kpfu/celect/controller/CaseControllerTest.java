@@ -48,8 +48,8 @@ public class CaseControllerTest {
     public void setUp(){
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(caseController).build();
-        when(celectService.getCase(INTERVIEW_ID)).thenReturn(interviewCasesDto);
-        when(celectService.election(INTERVIEW_ID, CASE_ID, PHONE_NUMBER)).thenReturn(caseDto);
+        when(celectService.getCases(INTERVIEW_ID)).thenReturn(interviewCasesDto);
+        when(celectService.getCase(CASE_ID)).thenReturn(caseDto);
     }
 
     @Test

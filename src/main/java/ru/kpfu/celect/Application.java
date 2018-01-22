@@ -2,9 +2,11 @@ package ru.kpfu.celect;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.sql.DataSource;
 
@@ -13,6 +15,7 @@ import javax.sql.DataSource;
  * celect
  */
 @SpringBootApplication
+//@ComponentScan("ru.kpfu.celect")
 public class Application extends SpringApplication{
 
     @Autowired
@@ -20,7 +23,6 @@ public class Application extends SpringApplication{
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        //System.out.print("HELOLO");
     }
 
 }

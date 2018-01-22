@@ -6,30 +6,62 @@ import java.io.Serializable;
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:11.
  * celect
- */
+// */
 @Entity
-@Table(name = "celect.public.elections")
+@Table(name = "elections")
 public class Elections implements Serializable, Model {
 
     @Id
-    @JoinColumn(name = "celect.public.elections.elections_user_id_interview_id_key")
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
 
     @ManyToOne
-    @JoinColumn(name = "interview_id")
-    Interview interview;
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     @ManyToOne
-    @JoinColumn(name = "case_id")
-    CelectCase aCelectCase;
+    @JoinColumn(name = "celect_case_id")
+    private CelectCase aCelectCase;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "celect_user_id")
+    private User user;
 
-    public Interview getInterview() {
-        return interview;
+    @ManyToOne
+    @JoinColumn(name = "attempt_test_id")
+    private AttempTest attempTest;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public AttempTest getAttempTest() {
+        return attempTest;
+    }
+
+    public void setAttempTest(AttempTest attempTest) {
+        this.attempTest = attempTest;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public void setaCelectCase(CelectCase aCelectCase) {
+        this.aCelectCase = aCelectCase;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Question getQuestion() {
+        return question;
     }
 
     public CelectCase getaCelectCase() {
@@ -43,9 +75,9 @@ public class Elections implements Serializable, Model {
     public Elections() {
     }
 
-    public Elections(Interview interview, CelectCase aCelectCase, User user) {
+    public Elections(Question question, CelectCase aCelectCase, User user) {
 
-        this.interview = interview;
+        this.question = question;
         this.aCelectCase = aCelectCase;
         this.user = user;
     }

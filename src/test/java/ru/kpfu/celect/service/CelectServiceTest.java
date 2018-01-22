@@ -12,7 +12,7 @@ import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
 import ru.kpfu.celect.data.TestData;
 import ru.kpfu.celect.model.CelectCase;
-import ru.kpfu.celect.model.Interview;
+import ru.kpfu.celect.model.Question;
 import ru.kpfu.celect.model.User;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class CelectServiceTest {
 
     User user = getUser();
     CelectCase aCelectCase = TestData.getCase();
-    List<Interview> interviewList = getListInterview();
+    List<Question> questionList = getListInterview();
     List<CelectCase> caseList = getListCase();
 
     @Before
@@ -63,17 +63,17 @@ public class CelectServiceTest {
         when(userDao.findByPhone(   PHONE_NUMBER))  .thenReturn(user);
         when(userDao.findeUserById( user.getId()))  .thenReturn(user);
         when(userDao.insert(        user))          .thenReturn(user);
-        when(interviewDao.findAll())                .thenReturn(interviewList);
+        when(interviewDao.findAll())                .thenReturn(questionList);
         when(caseDao.findByInterview(INTERVIEW_ID)) .thenReturn(caseList);
         when(caseDao.findById(CASE_ID))             .thenReturn(aCelectCase);
 
         //Устновка вызова реальных методов в конвертере
         doCallRealMethod().when(convert).convert((User)         anyObject());
         doCallRealMethod().when(convert).convert((CelectCase)         anyObject());
-        doCallRealMethod().when(convert).convert((Interview)    anyObject());
+        doCallRealMethod().when(convert).convert((Question)    anyObject());
         doCallRealMethod().when(convert).convert(               anyString());
         doCallRealMethod().when(convert).caseListToInterviewCasesDto(anyListOf(CelectCase.class));
-        doCallRealMethod().when(convert).interviewListToInterviewsDto(anyListOf(Interview.class));
+        doCallRealMethod().when(convert).interviewListToInterviewsDto(anyListOf(Question.class));
 
     }
 
@@ -90,17 +90,17 @@ public class CelectServiceTest {
 
     @Test
     public void getInterviews(){
-        assertEquals(celectService.getInterviews(), convert.interviewListToInterviewsDto(interviewList));
+        assertEquals(celectService.getInterviews(), convert.interviewListToInterviewsDto(questionList));
     }
 
     @Test
     public void getCase(){
-        assertEquals(celectService.getCase(INTERVIEW_ID), convert.caseListToInterviewCasesDto(caseList));
+        assertEquals(celectService.getCases(INTERVIEW_ID), ConversionResultFactory.caseListToInterviewCasesDto(caseList));
     }
 
     @Test
     public void election(){
-        assertEquals(celectService.election(INTERVIEW_ID, CASE_ID, PHONE_NUMBER), convert.convert(aCelectCase));
+        assertEquals(celectService.getCase(CASE_ID), ConversionResultFactory.convert(aCelectCase));
     }
 
 }

@@ -2,7 +2,7 @@ package ru.kpfu.celect.data;
 
 import ru.kpfu.celect.dto.*;
 import ru.kpfu.celect.model.CelectCase;
-import ru.kpfu.celect.model.Interview;
+import ru.kpfu.celect.model.Question;
 import ru.kpfu.celect.model.User;
 
 import java.util.ArrayList;
@@ -38,22 +38,18 @@ public class TestData {
                 .build();
     }
 
-    public static Interview getInterview(){
-        return new Interview.Builder()
-                .id(INTERVIEW_ID)
-                .info("info")
-                .build();
+    public static Question getInterview(){
+        return new Question(INTERVIEW_ID
+                ,"info", new ArrayList<>());
     }
 
-    public static Interview getInterview2(){
-        return new Interview.Builder()
-                .id(INTERVIEW_ID+1)
-                .info("info")
-                .build();
+    public static Question getInterview2(){
+        return new Question(INTERVIEW_ID + 1
+                ,"info", new ArrayList<>());
     }
 
-    public static List<Interview> getListInterview(){
-        List<Interview> result =  new ArrayList<Interview>();
+    public static List<Question> getListInterview(){
+        List<Question> result =  new ArrayList<Question>();
         result.add(getInterview());
         result.add(getInterview2());
         return result;

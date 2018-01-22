@@ -1,8 +1,6 @@
 package ru.kpfu.celect.dao;
 
-import ru.kpfu.celect.model.Elections;
-import ru.kpfu.celect.model.Interview;
-import ru.kpfu.celect.model.User;
+import ru.kpfu.celect.model.Question;
 
 import java.util.List;
 
@@ -11,10 +9,10 @@ import java.util.List;
  * celect
  */
 public interface InterviewDao {
-    List<Interview> findAll();
-    Interview findById(int id);
-    void insert(Interview interview);
-    void update(Interview interview, int id);
+    List<Question> findAll();
+    Question findById(int id);
+    void insert(Question question);
+    void update(Question question, int id);
     void delete(int id);
 
 }

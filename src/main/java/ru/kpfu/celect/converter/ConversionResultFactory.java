@@ -3,7 +3,7 @@ package ru.kpfu.celect.converter;
 import org.springframework.stereotype.Component;
 import ru.kpfu.celect.dto.*;
 import ru.kpfu.celect.model.CelectCase;
-import ru.kpfu.celect.model.Interview;
+import ru.kpfu.celect.model.Question;
 import ru.kpfu.celect.model.User;
 
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.List;
  * Created by Samat Khairutdinov on 28.10.16 14:22.
  * celect
  */
-// TODO: 17.02.17 Refactor me!
 @Component
 public class ConversionResultFactory {
     public AuthDto convert(User user) {
@@ -28,22 +27,22 @@ public class ConversionResultFactory {
                 .build();
     }
 
-    public InterviewsDto interviewListToInterviewsDto(List<Interview> interviews) {
+    public InterviewsDto interviewListToInterviewsDto(List<Question> questions) {
         List<InterviewDto> interviewDtos = new ArrayList<>();
-        for (Interview interview: interviews) {
-            interviewDtos.add(convert(interview));
+        for (Question question : questions) {
+            interviewDtos.add(convert(question));
         }
         return new InterviewsDto(interviewDtos);
     }
 
-    public InterviewDto convert(Interview interview) {
+    public InterviewDto convert(Question question) {
         return new InterviewDto.Builder()
-                .id(interview.getId())
-                .info(interview.getInfo())
+                .id(question.getId())
+                .info(question.getInfo())
                 .build();
     }
 
-    public InterviewCasesDto caseListToInterviewCasesDto(List<CelectCase> cases) {
+    public static InterviewCasesDto caseListToInterviewCasesDto(List<CelectCase> cases) {
         List<CaseDto> caseDtos = new ArrayList<>();
         for (CelectCase aCelectCase : cases) {
             caseDtos.add(convert(aCelectCase));
@@ -51,11 +50,22 @@ public class ConversionResultFactory {
         return new InterviewCasesDto(caseDtos);
     }
 
-    public CaseDto convert(CelectCase aCelectCase) {
-        return new CaseDto.Builder()
+    public static CaseDto convert(CelectCase aCelectCase) {
+        return aCelectCase != null ? new CaseDto.Builder()
                 .id(aCelectCase.getId())
                 .fullInfo(aCelectCase.getFullInfo())
                 .mainInfo(aCelectCase.getMainInfo())
-                .build();
+                .build() :
+                new CaseDto();
+    }
+
+    public static CelectCase convert(CaseDto caseDto) {
+        return caseDto != null ?
+                new CelectCase()
+                        .setId(caseDto.getId())
+                        .setFullInfo(caseDto.getFullInfo())
+                        .setMainInfo(caseDto.getMainInfo())
+                        .setQuestion(new Question().setId(caseDto.getQuestionId())) :
+                new CelectCase();
     }
 }

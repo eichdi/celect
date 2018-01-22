@@ -22,7 +22,7 @@ import static ru.kpfu.celect.data.TestData.*;
  * Created by Samat Khairutdinov on 20.12.16 16:50.
  * celect
  */
-public class InterviewControllerTest {
+public class QuestionControllerTest {
 
     @InjectMocks
     private InterviewController interviewController = new InterviewController();

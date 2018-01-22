@@ -8,14 +8,16 @@ import ru.kpfu.celect.dao.CaseDao;
 import ru.kpfu.celect.dao.ElectionsDao;
 import ru.kpfu.celect.dao.InterviewDao;
 import ru.kpfu.celect.dao.UserDao;
+import ru.kpfu.celect.dao.repository.CaseRepository;
 import ru.kpfu.celect.dto.AuthDto;
 import ru.kpfu.celect.dto.CaseDto;
 import ru.kpfu.celect.dto.InterviewCasesDto;
 import ru.kpfu.celect.dto.InterviewsDto;
 import ru.kpfu.celect.model.CelectCase;
-import ru.kpfu.celect.model.Interview;
+import ru.kpfu.celect.model.Question;
 import ru.kpfu.celect.model.User;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
@@ -25,60 +27,92 @@ import java.util.List;
 @Service
 public class CelectServiceImpl implements CelectService {
 
-    @Qualifier(value = "caseDaoJpaImpl")
     @Autowired
-    CaseDao caseDao;
-
-    @Autowired
-    ElectionsDao electionsDao;
-
-    @Autowired
-    InterviewDao interviewDao;
-
-    @Qualifier(value = "userDaoJpaImpl")
-    @Autowired
-    UserDao userDao;
-
-    @Autowired
-    ConversionResultFactory convert;
-
-
+    CaseRepository caseRepository;
 
     @Override
     public AuthDto login(String phone) {
-        User user = userDao.findByPhone(phone);
-        AuthDto result = convert.convert(user);
-        return result;
+        return null;
     }
 
     @Override
     public AuthDto registeration(String phone) {
-        User user = convert.convert(phone);
-        user = userDao.insert(user);
-        return convert.convert(user);
+        return null;
     }
 
     @Override
     public InterviewsDto getInterviews() {
-        List<Interview> interviews = interviewDao.findAll();
-        return convert.interviewListToInterviewsDto(interviews);
+        return null;
     }
 
     @Override
-    public InterviewCasesDto getCase(int interviewId) {
-        List<CelectCase> cases = caseDao.findByInterview(interviewId);
-        return convert.caseListToInterviewCasesDto(cases);
+    public InterviewCasesDto getCases(int questionId) {
+        return ConversionResultFactory.caseListToInterviewCasesDto(caseRepository.findByQuestion(new Question().setId(questionId)));
     }
 
     @Override
-    public CaseDto election(int interviewId, int caseId, String phone) {
-        User user = userDao.findByPhone(phone);
-        try{
-            electionsDao.insert(interviewId, caseId, user.getId());
-        }
-        finally {
-            CelectCase aCelectCase = caseDao.findById(caseId);
-            return convert.convert(aCelectCase);
-        }
+    public CaseDto getCase(int caseId) {
+        return ConversionResultFactory.convert(caseRepository.findOne(caseId));
     }
+
+    @Override
+    public CaseDto saveCase(CaseDto caseDto) {
+        return ConversionResultFactory.convert(
+                caseRepository.save(ConversionResultFactory.convert(caseDto)));
+    }
+
+//    @Autowired
+//    CaseDao caseDao;
+//
+//    @Autowired
+//    ElectionsDao electionsDao;
+//
+//    @Autowired
+//    InterviewDao interviewDao;
+//
+//    @Autowired
+//    UserDao userDao;
+
+//    @Autowired
+//    ConversionResultFactory convert;
+//
+//
+//
+//    @Override
+//    public AuthDto login(String phone) {
+//        User user = userDao.findByPhone(phone);
+//        AuthDto result = convert.convert(user);
+//        return result;
+//    }
+//
+//    @Override
+//    public AuthDto registeration(String phone) {
+//        User user = convert.convert(phone);
+//        user = userDao.insert(user);
+//        return convert.convert(user);
+//    }
+//
+//    @Override
+//    public InterviewsDto getInterviews() {
+//        List<Question> questions = interviewDao.findAll();
+//        return convert.interviewListToInterviewsDto(questions);
+//    }
+//
+//    @Override
+//    public InterviewCasesDto getCases(int interviewId) {
+//        List<CelectCase> cases = caseDao.findByInterview(interviewId);
+//        return convert.caseListToInterviewCasesDto(cases);
+//    }
+//
+//    @Override
+//    public CaseDto getCase(int interviewId, int caseId, String phone) {
+//        User user = userDao.findByPhone(phone);
+//        try{
+//            electionsDao.insert(interviewId, caseId, user.getId());
+//        }
+//        finally {
+//            CelectCase aCelectCase = caseDao.findById(caseId);
+//            return convert.convert(aCelectCase);
+//        }
+//    }
 }

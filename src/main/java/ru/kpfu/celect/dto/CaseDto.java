@@ -10,6 +10,7 @@ public class CaseDto implements Dto {
     private int id;
     private String mainInfo;
     private String fullInfo;
+    private Integer questionId;
 
     public CaseDto(int id, String mainInfo, String fullInfo) {
         this.id = id;
@@ -36,6 +37,30 @@ public class CaseDto implements Dto {
 
     public String getFullInfo() {
         return fullInfo;
+    }
+
+    public Integer getQuestionId() {
+        return questionId;
+    }
+
+    public CaseDto setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public CaseDto setMainInfo(String mainInfo) {
+        this.mainInfo = mainInfo;
+        return this;
+    }
+
+    public CaseDto setFullInfo(String fullInfo) {
+        this.fullInfo = fullInfo;
+        return this;
+    }
+
+    public CaseDto setQuestionId(Integer questionId) {
+        this.questionId = questionId;
+        return this;
     }
 
     public static class Builder {

@@ -11,8 +11,14 @@ import ru.kpfu.celect.dto.InterviewsDto;
  */
 public interface CelectService {
     AuthDto login(String phone);
+
     AuthDto registeration(String phone);
+
     InterviewsDto getInterviews();
-    InterviewCasesDto getCase(int interviewId);
-    CaseDto election(int interviewId, int caseId, String phone);
+
+    InterviewCasesDto getCases(int questionId);
+
+    CaseDto getCase(int caseId);
+
+    CaseDto saveCase(CaseDto caseDto);
 }

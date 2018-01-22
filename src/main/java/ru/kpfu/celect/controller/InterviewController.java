@@ -23,5 +23,5 @@ public class InterviewController {
     public ResponseEntity<InterviewsDto> getinterview(){
         return new ResponseEntity<>(celectService.getInterviews(), HttpStatus.OK);
     }
-    //TODO: Создать POST метод для создания нового Interview
+    //TODO: Создать POST метод для создания нового Question
 }

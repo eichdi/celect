@@ -3,20 +3,22 @@ package ru.kpfu.celect.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:06.
  * celect
  */
 @Entity
-@Table(name = "case")
-public class CelectCase implements Serializable, Model {
+@Table(name = "celect_case")
+public class CelectCase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @JoinColumn(name = "interview_id")
-    private Interview interview;
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     @Column(name = "main_info")
     private String mainInfo;
@@ -24,8 +26,8 @@ public class CelectCase implements Serializable, Model {
     @Column(name = "main_full")
     private String fullInfo;
 
-    public CelectCase(Interview interview, String mainInfo, String fullInfo) {
-        this.interview = interview;
+    public CelectCase(Question question, String mainInfo, String fullInfo) {
+        this.question = question;
         this.mainInfo = mainInfo;
         this.fullInfo = fullInfo;
     }
@@ -34,8 +36,8 @@ public class CelectCase implements Serializable, Model {
         return id;
     }
 
-    public Interview getInterview() {
-        return interview;
+    public Question getQuestion() {
+        return question;
     }
 
     public String getMainInfo() {
@@ -49,23 +51,43 @@ public class CelectCase implements Serializable, Model {
     public CelectCase() {
     }
 
-    public CelectCase(int id, Interview interview, String mainInfo, String fullInfo) {
+    public CelectCase setId(Integer id) {
         this.id = id;
-        this.interview = interview;
+        return this;
+    }
+
+    public CelectCase setQuestion(Question question) {
+        this.question = question;
+        return this;
+    }
+
+    public CelectCase setMainInfo(String mainInfo) {
+        this.mainInfo = mainInfo;
+        return this;
+    }
+
+    public CelectCase setFullInfo(String fullInfo) {
+        this.fullInfo = fullInfo;
+        return this;
+    }
+
+    public CelectCase(int id, Question question, String mainInfo, String fullInfo) {
+        this.id = id;
+        this.question = question;
         this.mainInfo = mainInfo;
         this.fullInfo = fullInfo;
     }
 
     public CelectCase(Builder builder){
         this.id = builder.id;
-        this.interview = builder.interview;
+        this.question = builder.question;
         this.mainInfo = builder.mainInfo;
         this.fullInfo = builder.fullInfo;
     }
 
     public static class Builder {
         private int id;
-        private Interview interview;
+        private Question question;
         private String mainInfo;
         private String fullInfo;
 
@@ -73,8 +95,8 @@ public class CelectCase implements Serializable, Model {
             this.id = arg;
             return this;
         }
-        public Builder interview(Interview arg){
-            this.interview = arg;
+        public Builder interview(Question arg){
+            this.question = arg;
             return this;
         }
         public Builder mainInfo(String arg){

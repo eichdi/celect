@@ -14,18 +14,32 @@ import ru.kpfu.celect.service.CelectService;
  */
 @RestController
 public class CaseController {
+
     @Autowired
     CelectService celectService;
 
-    @RequestMapping(value = "/interview/{interview-id}/case", method = RequestMethod.GET)
-    public ResponseEntity<InterviewCasesDto> getCases(@PathVariable("interview-id") int interviewId){
-        return new ResponseEntity<>(celectService.getCase(interviewId), HttpStatus.OK);
+    @RequestMapping(value = "question/{questinon-id}/case", method = RequestMethod.GET)
+    public ResponseEntity<InterviewCasesDto> getCases(@PathVariable("questinon-id") int questionId){
+        return new ResponseEntity<>(celectService.getCases(questionId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/interview/{interview-id}/case/{case-id}", method = RequestMethod.POST)
-    public ResponseEntity<CaseDto> election(@PathVariable("interview-id") int interviewId,
-                                            @PathVariable("case-id") int caseId,
-                                            @RequestHeader("phone") String phone){
-        return new ResponseEntity<>(celectService.election(interviewId, caseId, phone), HttpStatus.OK);
+    @RequestMapping(value = "hello",  method = RequestMethod.GET)
+    public ResponseEntity<String> hello() {
+        return new ResponseEntity<>("darkness my old friend", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/case/{case-id}", method = RequestMethod.GET)
+    public ResponseEntity<CaseDto> getCase(@PathVariable("case-id") int caseId){
+        return new ResponseEntity<>(celectService.getCase(caseId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/case/{case-id}", method = RequestMethod.PUT)
+    public ResponseEntity<CaseDto> updateCase(@ModelAttribute("case") CaseDto caseDto){
+        return new ResponseEntity<>(celectService.saveCase(caseDto), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/case", method = RequestMethod.POST)
+    public ResponseEntity<CaseDto> insertCase(){
+        return new ResponseEntity<>(celectService.saveCase(null), HttpStatus.OK);
     }
 }
