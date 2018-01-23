@@ -2,8 +2,6 @@ package ru.kpfu.celect.model;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Optional;
 
 /**
  * Created by Samat Khairutdinov on 07.10.2016 11:06.
@@ -32,7 +30,7 @@ public class CelectCase {
         this.fullInfo = fullInfo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

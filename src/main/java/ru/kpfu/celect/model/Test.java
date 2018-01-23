@@ -27,8 +27,9 @@ public class Test implements Serializable, Model {
         return id;
     }
 
-    public void setId(int id) {
+    public Test setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getDescription() {

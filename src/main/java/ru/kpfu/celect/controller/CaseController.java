@@ -18,8 +18,8 @@ public class CaseController {
     @Autowired
     CelectService celectService;
 
-    @RequestMapping(value = "question/{questinon-id}/case", method = RequestMethod.GET)
-    public ResponseEntity<InterviewCasesDto> getCases(@PathVariable("questinon-id") int questionId){
+    @RequestMapping(value = "question/{question-id}/case", method = RequestMethod.GET)
+    public ResponseEntity<InterviewCasesDto> getCases(@PathVariable("question-id") int questionId){
         return new ResponseEntity<>(celectService.getCases(questionId), HttpStatus.OK);
     }
 
@@ -28,18 +28,18 @@ public class CaseController {
         return new ResponseEntity<>("darkness my old friend", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/case/{case-id}", method = RequestMethod.GET)
+    @RequestMapping(value = "case/{case-id}", method = RequestMethod.GET)
     public ResponseEntity<CaseDto> getCase(@PathVariable("case-id") int caseId){
         return new ResponseEntity<>(celectService.getCase(caseId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/case/{case-id}", method = RequestMethod.PUT)
-    public ResponseEntity<CaseDto> updateCase(@ModelAttribute("case") CaseDto caseDto){
+    @RequestMapping(value = "case/{case-id}", method = RequestMethod.PUT)
+    public ResponseEntity<CaseDto> updateCase(@ModelAttribute CaseDto caseDto){
         return new ResponseEntity<>(celectService.saveCase(caseDto), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/case", method = RequestMethod.POST)
-    public ResponseEntity<CaseDto> insertCase(){
-        return new ResponseEntity<>(celectService.saveCase(null), HttpStatus.OK);
+    @RequestMapping(value = "case", method = RequestMethod.POST)
+    public ResponseEntity<CaseDto> insertCase(@ModelAttribute CaseDto caseDto){
+        return new ResponseEntity<>(celectService.saveCase(caseDto), HttpStatus.OK);
     }
 }

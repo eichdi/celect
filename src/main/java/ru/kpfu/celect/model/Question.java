@@ -1,7 +1,8 @@
 package ru.kpfu.celect.model;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 /**

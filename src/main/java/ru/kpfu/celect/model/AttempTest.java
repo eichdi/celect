@@ -1,11 +1,9 @@
 package ru.kpfu.celect.model;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
 
 /**
- * Попытка похождения текста
+ * Попытка похождения теста
  * @author Khairutdinov Samat
  * @since 27.11.2017
  */
@@ -32,27 +30,30 @@ public class AttempTest {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Test getTest() {
         return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public AttempTest setId(Integer id) {
+        this.id = id;
+        return this;
     }
 
-//    public Collection<Elections> getElections() {
+    public AttempTest setTest(Test test) {
+        this.test = test;
+        return this;
+    }
+
+    public AttempTest setUser(User user) {
+        this.user = user;
+        return this;
+    }
+
+    //    public Collection<Elections> getElections() {
 //        return elections;
 //    }
 //

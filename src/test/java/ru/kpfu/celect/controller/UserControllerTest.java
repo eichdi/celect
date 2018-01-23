@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ru.kpfu.celect.dto.AuthDto;
 import ru.kpfu.celect.dto.InterviewsDto;
+import ru.kpfu.celect.model.User;
 import ru.kpfu.celect.service.CelectService;
 
 import static org.mockito.Mockito.when;
@@ -47,7 +48,7 @@ public class UserControllerTest {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(userController).build();
         when(celectService.login(PHONE_NUMBER)).thenReturn(authDto);
-        when(celectService.registeration(PHONE_NUMBER)).thenReturn(authDto);
+//        when(celectService.registeration(new User().setPhoneNumber(PHONE_NUMBER))).thenReturn(authDto);
     }
 
     @Test

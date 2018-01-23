@@ -25,6 +25,18 @@ public class User implements Serializable, Model {
     @Column(name = "admin")
     private Boolean admin;
 
+    @Column(name = "token")
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public User setToken(String token) {
+        this.token = token;
+        return this;
+    }
+
     public String getPasswordHash() {
         return passwordHash;
     }

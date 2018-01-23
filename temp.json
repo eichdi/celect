@@ -1,0 +1,13 @@
+{
+  "firstName": "Frodo",
+  "lastName": "Baggins",
+  "description": "ring bearer",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/api/employees/1"
+    },
+    "employee": {
+      "href": "http://localhost:8080/api/employees/1"
+    }
+  }
+}

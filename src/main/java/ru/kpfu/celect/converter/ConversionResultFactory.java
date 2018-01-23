@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.kpfu.celect.dto.*;
 import ru.kpfu.celect.model.CelectCase;
 import ru.kpfu.celect.model.Question;
+import ru.kpfu.celect.model.Test;
 import ru.kpfu.celect.model.User;
 
 import java.util.ArrayList;
@@ -27,27 +28,43 @@ public class ConversionResultFactory {
                 .build();
     }
 
-    public InterviewsDto interviewListToInterviewsDto(List<Question> questions) {
-        List<InterviewDto> interviewDtos = new ArrayList<>();
-        for (Question question : questions) {
-            interviewDtos.add(convert(question));
-        }
-        return new InterviewsDto(interviewDtos);
+
+    public static QuestionDto convert(Question question) {
+        return question != null ?
+                new QuestionDto()
+                        .setId(question.getId())
+                        .setCaseDtoList(convertCelectCases(question.getCelectCase()))
+                        .setInfo(question.getInfo())
+                        .setTestDto(convertWihoutQuestions(question.getTest())) :
+                new QuestionDto();
     }
 
-    public InterviewDto convert(Question question) {
-        return new InterviewDto.Builder()
-                .id(question.getId())
-                .info(question.getInfo())
-                .build();
+    private static TestDto convertWihoutQuestions(Test test) {
+        return test != null ?
+                new TestDto()
+                .setId(test.getId())
+                .setDescription(test.getDescription()):
+                new TestDto();
     }
 
     public static InterviewCasesDto caseListToInterviewCasesDto(List<CelectCase> cases) {
-        List<CaseDto> caseDtos = new ArrayList<>();
-        for (CelectCase aCelectCase : cases) {
+        return new InterviewCasesDto(convertCelectCases(cases));
+    }
+
+    public static List<CaseDto> convertCelectCases(List<CelectCase> celectCases) {
+        List<CaseDto> caseDtos = new ArrayList<>(celectCases.size());
+        for (CelectCase aCelectCase : celectCases) {
             caseDtos.add(convert(aCelectCase));
         }
-        return new InterviewCasesDto(caseDtos);
+        return caseDtos;
+    }
+
+    public static List<QuestionDto> convertQuestions(List<Question> questions) {
+        List<QuestionDto> caseDtos = new ArrayList<>(questions.size());
+        for (Question aCelectCase : questions) {
+            caseDtos.add(convert(aCelectCase));
+        }
+        return caseDtos;
     }
 
     public static CaseDto convert(CelectCase aCelectCase) {

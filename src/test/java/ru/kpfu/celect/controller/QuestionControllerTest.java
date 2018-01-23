@@ -25,7 +25,7 @@ import static ru.kpfu.celect.data.TestData.*;
 public class QuestionControllerTest {
 
     @InjectMocks
-    private InterviewController interviewController = new InterviewController();
+    private QuestionController interviewController = new QuestionController();
 
     @Mock
     CelectService celectService;
