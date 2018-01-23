@@ -1,9 +1,26 @@
 table {
+    font-family: arial, sans-serif;
     border-collapse: collapse;
+    width: 100%;
 }
 
-td, th {
-    border: 1px solid #999;
-    padding: 0.5rem;
+td {
+    border: 1px solid #dddddd;
     text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    background-color: #fedd11;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #fafafa;
 }

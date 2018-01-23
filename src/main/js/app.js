@@ -11,58 +11,87 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {celectcases: []};
+		this.state = {questions: []};
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: '/question/1/case'}).done(response => {
-			this.setState({celectcases: response.entity._embedded.celectcases});
+		client({method: 'GET', path: '/api/questions'}).done(response => {
+			this.setState({questions: response.entity._embedded.questions});
 		});
 	}
 
 	render() {
 		return (
-			<CelectcaseList employees={this.state.celectcases}/>
+			<QuestionList questions={this.state.questions}/>
 		)
 	}
 }
 // end::app[]
 
-// tag::employee-list[]
-class CelectcaseList extends React.Component{
+// tag::question-list[]
+class QuestionList extends React.Component{
 	render() {
-		var celectcases = this.props.celectcases.map(celectcase =>
-			<Celectcase celectcase={celectcase}/>
-		);
+        var questions = this.props.questions.map(question =>
+			<Question key={question._links.self.href} question={question}/>
+        );
+		return (
+			<b>
+				{questions}
+			</b>
+		)
+	}
+}
+// end::question-list[]
+
+// tag::question[]
+class Question extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {celectCases: []};
+    }
+
+    componentDidMount() {
+        client({method: 'GET', path: this.question.celectCases.href}).done(response => {
+            this.setState({celectCases: response.entity._embedded.celectCases});
+        });
+    }
+
+	render() {
 		return (
 			<table>
-				<tbody>
-					<tr>
-						<th>ID</th>
-						<th>Main Info</th>
-						<th>Full info</th>
-					</tr>
-					{celectcase}
-				</tbody>
+				<tr>
+					<th>{this.props.question.info}</th>
+				</tr>
+				<CelectList celectCases={this.state.celectCases} question={this.props.question}/>
 			</table>
 		)
 	}
 }
-// end::employee-list[]
 
-// tag::case[]
-class Celectcase extends React.Component{
+class CelectList extends React.Component{
+	render() {
+        var cases = this.props.celectCases.map(celectCase =>
+			<CelectCase key={celectCase._links.celectCase.href} celectCase={celectCase}/>
+        );
+		return (
+			<p>
+			{cases}
+			</p>
+		)
+	}
+}
+// end::question[]
+
+class CelectCase extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.celectcase.id}</td>
-				<td>{this.props.celectcase.mainInfo}</td>
-				<td>{this.props.celectcase.fullInfo}</td>
+				<td>{this.props.celectCase.mainInfo}</td>
+				<td>{this.props.celectCase.fullInfo}</td>
 			</tr>
 		)
 	}
 }
-// end::case[]
 
 // tag::render[]
 ReactDOM.render(

@@ -33,8 +33,8 @@ public class ElectionController {
         return new ResponseEntity<>(celectService.getAttemptElections(attemptId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "case", method = RequestMethod.POST)
-    public ResponseEntity<Elections> insertCase(@ModelAttribute Elections elections){
+    @RequestMapping(value = "elections", method = RequestMethod.POST)
+    public ResponseEntity<Elections> insertElections(@ModelAttribute Elections elections){
         return new ResponseEntity<>(celectService.saveElections(elections), HttpStatus.OK);
     }
 }
